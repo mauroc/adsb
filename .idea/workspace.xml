@@ -58,7 +58,7 @@
       <file leaf-file-name="report_utils.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/report_utils.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="6" selection-start="2001" selection-end="2001" vertical-scroll-proportion="0.7911733">
+            <state line="66" column="103" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.7900969">
               <folding />
             </state>
           </provider>
@@ -618,7 +618,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/report_utils.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="6" selection-start="2001" selection-end="2001" vertical-scroll-proportion="0.7911733">
+        <state line="66" column="103" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.7900969">
           <folding />
         </state>
       </provider>

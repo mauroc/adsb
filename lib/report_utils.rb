@@ -9,23 +9,27 @@ module ReportUtils
 
     $t1 = TCPSocket.new "data.adsbhub.org", 5002
 
+    tot_saved = tot_incomplete = 0
+    t_start = Time.now
+
     rep=Report.new
     prev_hex_ident = nil
 
     while line = $t1.gets
-      p line
+      #p line
       ar=line.split(',')
 
-      trans_type = ar[1].to_i
+      rec_type = ar[1].to_i
       hex_ident =   ar[4]
 
       if prev_hex_ident && prev_hex_ident != hex_ident
-        p "incomplete report"
+        #print "\r\nincomplete report #{rep.messages} -----------------------------------------------------------------------------------------------------"
         rep = Report.new
         prev_hex_ident = nil
+        tot_incomplete += 1
       end
 
-      case trans_type
+      case rec_type
         when 1
           rep.message_type            = ar[0]
           rep.session_id              = ar[2]
@@ -60,15 +64,16 @@ module ReportUtils
           p 'unrecognized transmission type'
       end
 
-      rep.add_mess(trans_type)
+      rep.add_mess(rec_type)
 
-      p rep.messages
+      #p rep.messages
 
       if rep.complete?
         rep.save
-        p "saved report #{rep.id}"
+        print "\rElapsed time: #{(Time.now-t_start).round(0)}. Saved reports: #{tot_saved}. Incomplete: #{tot_incomplete}"
         rep = Report.new
         prev_hex_ident = nil
+        tot_saved+=1
         #byebug
       else
         prev_hex_ident = hex_ident
